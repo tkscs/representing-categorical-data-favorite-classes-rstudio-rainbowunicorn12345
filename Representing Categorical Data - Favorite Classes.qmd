@@ -14,23 +14,57 @@ url = "https://docs.google.com/spreadsheets/d/1JmVLUjtSwcuxApJXFFYu7sbre7s0pHjOf
 df = read_sheet(url) |> 
   clean_names()
 ```
+
 # 1. Make a barplot of `what_is_your_favorite_core_class`
 
 ```{r}
-df |> 
-  ggplot()
+df |>
+  ggplot() +
+  aes(x = what_is_your_favorite_core_class,
+      fill = what_is_your_favorite_core_class) +
+geom_bar()+
+    coord_flip()+
+  labs(x = "Core Class",
+       y = "Frequency",
+       fill = NULL)
 ```
 
 # 2. Make a barplot of `what_is_your_favorite_elective_class`
 
 ```{r}
-
+df |>
+  ggplot() +
+  aes(x = what_is_your_favorite_elective_class,
+      fill = what_is_your_favorite_elective_class) +
+geom_bar()+
+  coord_flip()+
+  labs(x = "Elective Class",
+       y = "Frequency",
+       fill = NULL)
 ```
 
 # 3. Make a stacked barplot of `what_is_your_favorite_core_class` and `what_is_your_favorite_elective_class`
 
 ```{r}
-
+df |>
+  ggplot() +
+  aes(x = what_is_your_favorite_core_class,
+      fill = what_is_your_favorite_elective_class) +
+geom_bar()+
+  labs(x = "Elective Class",
+       y = "Frequency",
+       fill = NULL)
 ```
 
 # 4. Make a side by side barplot of `what_is_your_favorite_core_class` and `what_is_your_favorite_elective_class`
+
+```{r}
+df |>
+  ggplot() +
+  aes(x = what_is_your_favorite_core_class,
+      fill = what_is_your_favorite_elective_class) +
+geom_bar(position = "dodge")+
+  labs(x = "Elective Class",
+       y = "Frequency",
+       fill = NULL)
+```
